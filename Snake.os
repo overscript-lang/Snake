@@ -190,7 +190,7 @@ GameTimer_Tick(object source, object e){
 	int hx = Snake[0].X;
 	int hy = Snake[0].Y;
 	
-   switch (d) {
+	switch (d) {
 		case 0:
 			hy--;
 			break;

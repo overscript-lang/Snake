@@ -18,10 +18,11 @@ const object _3 = `UInt32\3;
 const object Gtk = LoadAssemblyFrom("GtkSharp.dll");
 const object GtkImage = GetTypeByName(Gtk, "Gtk.Image");
 const object GtkButton = GetTypeByName(Gtk, "Gtk.Button");
+const object GtkLabel = GetTypeByName(Gtk, "Gtk.Label");
 
 `GtkButton StartButton, UpButton, DownButton, LeftButton, RightButton;
 `GtkImage[] CellImage = new `GtkImage[FieldWidth * FieldHeight];
-object StatusLabel;
+`GtkLabel StatusLabel;
 object GameTimer = Timer(GameTimer_Tick(null, null), IntervalMSec); 
 object UpdateGameStateHandler = EventHandler(UpdateGameState());
 object UpdateFieldHandler = EventHandler(UpdateField());
@@ -74,7 +75,7 @@ ComposeForm(){
 
 	mainTable->Attach(table, _0, _2, _0, _1);
 
-	StatusLabel = CreateFrom(Gtk, "Gtk.Label", "Hello!");
+	StatusLabel = GtkLabel.Create("Hello!");
 	mainTable->Attach(StatusLabel, _0, _1, _1, _2);
 	
 	`GtkTable controlTable = GtkTable.Create(_3, _3, true);
@@ -193,7 +194,7 @@ GameTimer_Tick(object source, object e){
 	int hx = Snake[0].X;
 	int hy = Snake[0].Y;
 	
-   switch (d) {
+	switch (d) {
 		case 0:
 			hy--;
 			break;
